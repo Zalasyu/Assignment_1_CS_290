@@ -13,11 +13,11 @@ __Update July 2, 2021: You are allowed to make changes to package.json__
 
 You can choose the names of the static HTML pages and the URLs for the routes however you want with one exception - the static HTML file for the Home Page must be named index.html.
 # 1. Home Page
-A GET request for the root URL should return a static HTML page named index.html.
-This page must include links to the following 2 pages:
-Stock Listing Page
-Stock Search Page
-In addition to the links, you can optionally add welcome text on this page describing the web application.
+* A GET request for the root URL should return a static HTML page named index.html.
+* This page must include links to the following 2 pages:
+  * Stock Listing Page
+  * Stock Search Page
+* In addition to the links, you can optionally add welcome text on this page describing the web application.
 # 2. Stock Listing Page
 For this page, create a static HTML file that the displays the following information
 An HTML table with the data provided in the file stocks.js, and
