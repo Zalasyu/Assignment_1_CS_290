@@ -4,9 +4,12 @@
 const PORT = 3000;
 
 // The variable stocks has the same value as the variable stocks in the file `stocks.js`
-const stocks = require('./stocks.js').stocks;
+const stocks = require('./public/js/stocks.js').stocks;
 
+// Express is a minimal and flexible Node.js web application framework that provides a robust
+// set of features for web and mobile applications.
 const express = require("express");
+const path = require('path');
 const app = express();
 
 
@@ -14,8 +17,11 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-// Add your code here
+// Create a route
+app.get
 
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}...`);
-});
+// Set Static Folder
+app.use(express.static(path.join(__dirname, 'public')))
+
+// Thew app.listen() function creates the Node.js web server at the specified host and port.
+app.listen(PORT, () => { console.log(`Server listening on port ${PORT}...`); });
