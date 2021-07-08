@@ -12,6 +12,9 @@ const express = require("express");
 const path = require('path');
 const app = express();
 
+// Local Modules
+const stock_search = require("./public/stocks/stock_search");
+const stock_order = require("./public/stocks/stock_order");
 
 app.use(express.urlencoded({
     extended: true
@@ -29,45 +32,26 @@ app.get('/public/stocks/stock_search.html', (req,res) => {
 
 });
 // Send Json object of the highest or lowest stock price dynamically.
-app.post("/server.js", (req, res) => {
+app.post("/stock_search", (req, res) => {
     console.log(req.body);
     let req_data = req.body.filter;
-    let result = findStockByPrice(req_data)
+    let result = stock_search.findStockByPrice(req_data)
     console.log(result);
     res.send(result)
+});
 
+// 
+app.post("/stock_order", (req, res) => {
+    console.log(req.body);
+    let sym = req.body.symbol
+    let quant = req.body.quantity
+    console.log(sym);
+    console.log(quant);
+    let order_amount = stock_order.calculateOrderAmt(sym, quant);
+    let company = stock_order.findCompany(sym);
+    res.send(`You placed an order to buy ${quant} stocks of ${company.company}. The price of one stock is $${company.price} and the total price for this order is $${order_amount}.`)
 
-    });
-
-// Find the lowest or highest stock price based on request body's result.
-function findStockByPrice(data){
-    const stocks = require('./public/js/stocks.js').stocks;
-
-    let answer = stocks[0]["price"];
-    let record;
-    if (data === "highest"){
-        for (let i = 0;  i < stocks.length; i++){
-            let price = stocks[i]["price"];
-            if (price > answer){
-                answer = price;
-                record = stocks[i];
-
-            }
-        }
-        return record;
-    } else if (data === "lowest"){
-        for (let i = 0; i < stocks.length; i++){
-            let price = stocks[i]["price"];
-            if (price < answer){
-                answer = price;
-                record = stocks[i];
-
-            }
-        }
-        return record;
-    }
-}
-
+});
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
