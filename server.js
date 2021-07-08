@@ -17,11 +17,14 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-// Create a route
-app.get
+// Create a route to Stocks Html Page
+app.get('/public/stocks/stocks.html', (req,res) => {
+    res.sendFile(path.join(__dirname, '/public/stocks/stocks.html'));
+
+});
 
 // Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Thew app.listen() function creates the Node.js web server at the specified host and port.
 app.listen(PORT, () => { console.log(`Server listening on port ${PORT}...`); });

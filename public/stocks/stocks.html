@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+table, th, td {
+	text-align: left;
+	border: 1px solid #000;
+	width: 25%;
+	border-collapse: collapse;
+}
+</style>
+<title>Stock Listing Page</title>
+</head>
+
+<body>
+	<h2>Stock Listing Page</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Company</th>
+					<th>Symbol</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Microsoft</td>
+					<td>MSFT</td>
+					<td>232.04</td>
+				</tr>
+				<tr>
+					<td>Oracle</td>
+					<td>ORCL</td>
+					<td>67.08</td>
+				</tr>
+				<tr>
+					<td>Splunk</td>
+					<td>SPLK</td>
+					<td>137.55</td>
+				</tr>
+				<tr>
+					<td>Snowflake</td>
+					<td>SNOW</td>
+					<td>235.8</td>
+				</tr>
+				<tr>
+					<td>Terradata</td>
+					<td>TDC</td>
+					<td>44.98</td>
+				</tr>
+
+			</tbody>
+		</table>
+		<br />
+		<form action = "stock_order.html", method="POST">
+			<label>Enter comapny symbol
+			<input type="text", name="symbol"i, placeholder = "Company Symbol", required, maxlength="3", size="15">
+			</label>
+			<label> and quantity of
+			<input type="number" name="quantity", placeholder = "Quantity", required, min="0", step="1">
+			</label>
+			<label> stock(s) you want to buy.</label>
+			<br />
+			<button type="submit">Submit</button>
+			<button type="reset">Reset</button>
+
+		</form>
+
+</body>
+</html>
