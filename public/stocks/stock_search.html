@@ -6,15 +6,16 @@
 	</head>
 	<body>
 		<h1>Stock Order and Search</h1>
-		<form action="filter_stocks.js">
+		<form action="/server.js", method="POST">
 			<fieldset>
 				<label>Find the stock with the</label>
-				<input type="radio", name="filter", id="y", value="highest">
-				<label for="y">Yes</label>
-				<input type="radio" name="filter" id="no" value="lowest">
-				<label for="no">No</label>
-					
+				<label for="highest"><b>highest price</b> </label>
+				<input type="radio", name="filter", id="highest", value="highest">
+				<label for="lowest"> <b>or the lowest price.</b></label>
+				<input type="radio" name="filter" id="lowest" value="lowest">
 			</fieldset>
+			<br />
+			<button type="submit">Submit</button>
 
 		</form>
 	</body>

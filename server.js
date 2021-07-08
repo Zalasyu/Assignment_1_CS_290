@@ -24,10 +24,56 @@ app.get('/public/stocks/stocks.html', (req,res) => {
 });
 
 // Create a route to Stock Search Page Page
-app.get('/public/stocks/stocks_search.html', (req,res) => {
-    res.sendFile(path.join(__dirname, '/public/stocks/stocks_search.html'));
+app.get('/public/stocks/stock_search.html', (req,res) => {
+    res.sendFile(path.join(__dirname, '/public/stocks/stock_search.html'));
 
 });
+// Send Json object of the highest or lowest stock price dynamically.
+app.post("/server.js", (req, res) => {
+    console.log(req.body);
+    let req_data = req.body.filter;
+    console.log(req_data);
+    result = findStockByPrice(req_data)
+    console.log(result);
+
+
+    });
+
+// Find the lowest or highest stock price based on request body's result.
+function findStockByPrice(data){
+    const stocks = require('./public/js/stocks.js').stocks;
+    console.log(stocks);
+
+    let answer = -1
+    let record = -1
+    if (data === "highest"){
+        for (let i = 0;  i < stocks.length; i++){
+            let price = stocks[i]["price"]
+            console.log(price);
+            if (price > answer){
+                answer = price;
+                record = stocks[i]
+
+            }
+        console.log(record);
+        return record;
+        }
+    } else if (data === "lowest"){
+        for (let i = 0; i < stocks.length; i++){
+            let price = stocks[i]["price"]
+            console.log(price);
+            if (price < answer){
+                answer = price;
+                record = stocks[i]
+
+            }
+        }
+        console.log(record);
+        return record;
+    }
+}
+
+
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
