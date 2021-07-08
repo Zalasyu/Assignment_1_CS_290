@@ -17,12 +17,17 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-// Create a route to Stocks Html Page
+// Create a route to Stock List Page Page
 app.get('/public/stocks/stocks.html', (req,res) => {
     res.sendFile(path.join(__dirname, '/public/stocks/stocks.html'));
 
 });
 
+// Create a route to Stock Search Page Page
+app.get('/public/stocks/stocks_search.html', (req,res) => {
+    res.sendFile(path.join(__dirname, '/public/stocks/stocks_search.html'));
+
+});
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
