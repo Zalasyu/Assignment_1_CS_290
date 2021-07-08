@@ -32,9 +32,9 @@ app.get('/public/stocks/stock_search.html', (req,res) => {
 app.post("/server.js", (req, res) => {
     console.log(req.body);
     let req_data = req.body.filter;
-    console.log(req_data);
-    result = findStockByPrice(req_data)
+    let result = findStockByPrice(req_data)
     console.log(result);
+    res.send(result)
 
 
     });
@@ -42,33 +42,28 @@ app.post("/server.js", (req, res) => {
 // Find the lowest or highest stock price based on request body's result.
 function findStockByPrice(data){
     const stocks = require('./public/js/stocks.js').stocks;
-    console.log(stocks);
 
-    let answer = -1
-    let record = -1
+    let answer = stocks[0]["price"];
+    let record;
     if (data === "highest"){
         for (let i = 0;  i < stocks.length; i++){
-            let price = stocks[i]["price"]
-            console.log(price);
+            let price = stocks[i]["price"];
             if (price > answer){
                 answer = price;
-                record = stocks[i]
+                record = stocks[i];
 
             }
-        console.log(record);
-        return record;
         }
+        return record;
     } else if (data === "lowest"){
         for (let i = 0; i < stocks.length; i++){
-            let price = stocks[i]["price"]
-            console.log(price);
+            let price = stocks[i]["price"];
             if (price < answer){
                 answer = price;
-                record = stocks[i]
+                record = stocks[i];
 
             }
         }
-        console.log(record);
         return record;
     }
 }
